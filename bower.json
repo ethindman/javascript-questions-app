@@ -1,0 +1,22 @@
+{
+  "name": "StudyBuddy",
+  "version": "1.0.0",
+  "authors": [
+    "Elliott Hindman"
+  ],
+  "description": "Tool for practicing Speaking another Language",
+  "main": "gulpfile.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "milligram": "^1.1.0",
+    "firebase": "^2.4.0"
+  },
+  "private": true
+}

@@ -1,0 +1,27 @@
+{
+  "name": "StudyBuddy",
+  "version": "1.0.0",
+  "description": "A Tool for Helping  you Practice a Language",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build"
+  },
+  "author": "Elliott Hindman",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.2",
+    "rimraf": "^2.5.1",
+    "run-sequence": "^1.1.5"
+  },
+  "private": true,
+  "dependencies": {
+    "firebase": "^2.4.0"
+  }
+}
