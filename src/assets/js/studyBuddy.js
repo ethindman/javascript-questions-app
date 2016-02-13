@@ -1,3 +1,16 @@
+var FURL 		= "https://<<yourfirebaseurl>>.firebaseio.com/";
+var ref 		= new Firebase(FURL);
+
+var user 		= ref.child("users/ethindman");
+var buddy 	= ref.child("buddies/ethindman/yT49wmHY");
+var topics 	= ref.child("topics/yT49wmHY");
+
+ref.on("value", function(data) {
+  console.log(data.val());
+}, function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
+});
+
 var question 			 = document.getElementById('question');
 var questionBtn 	 = document.getElementById('question-button');
 var topicSelector  = document.getElementById('topic-selector');
@@ -6,6 +19,10 @@ var myInfoBtn			 = document.getElementById('myInfo');
 var myIntBtn			 = document.getElementById('myInterests');
 var myDayBtn	 		 = document.getElementById('myDay');
 var myFamilyBtn		 = document.getElementById('myFamily');
+
+var config = {
+	warmingMessage: "Click a topic button above to get a question."
+};
 
 function StudyBuddy(name) {
 		this.name 			= name;
@@ -20,11 +37,16 @@ function StudyBuddy(name) {
 			console.log("Hi my name is " + this.name);
 		},
 		ask: function() {
-			if(this.qBankIndex === this.qBank.length) {
-				this.qBankIndex = 0;
+			if(this.qBank.length == 0) {
+				question.innerHTML = config.warmingMessage;
 			}
-			question.innerHTML = this.qBank[this.qBankIndex];
-			this.qBankIndex++;
+			else {
+				if(this.qBankIndex === this.qBank.length) {
+					this.qBankIndex = 0;
+				}
+				question.innerHTML = this.qBank[this.qBankIndex];
+				this.qBankIndex++;
+			}
 		},
 		add: function(question) {
 			this.qBankIndex = 0;
@@ -81,28 +103,23 @@ function StudyBuddy(name) {
 	}, false);
 
 	topicSelector.addEventListener('click', function(e) {
-		if(questionBtn.display === 'none') {
-			questionBtn.display = 'block';
+		switch(e.target.id) {
+			case 'myInfo':
+				sb.clear();
+				sb.add(myInfo);
+				break;
+			case 'myInterests':
+				sb.clear();
+				sb.add(myInterests);
+				break;
+			case 'myDay':
+				sb.clear();
+				sb.add(myDay);
+				break;
+			case 'myFamily':
+				sb.clear();
+				sb.add(myFamily);
+				break;
 		}
-
-	switch(e.target.id) {
-		case 'myInfo':
-			sb.clear();
-			sb.add(myInfo);
-			break;
-		case 'myInterests':
-			sb.clear();
-			sb.add(myInterests);
-			break;
-		case 'myDay':
-			sb.clear();
-			sb.add(myDay);
-			break;
-		case 'myFamily':
-			sb.clear();
-			sb.add(myFamily);
-			break;
-	}
-
-	e.stopPropagation();
+		e.stopPropagation();
 }, true);

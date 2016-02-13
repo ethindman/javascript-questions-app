@@ -5,33 +5,35 @@
 	<title>StudyBuddy</title>
 	<!-- Google Fonts -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-	<!-- CSS Reset -->
-	<link rel="stylesheet" href="bower_components/normalize.css/normalize.css">
-	<!-- Milligram CSS minified -->
-	<link rel="stylesheet" href="bower_components/milligram/dist/milligram.min.css">
+	<!-- Public CSS Libraries -->
+	<link rel="stylesheet" href="dist/assets/css/public.css">
 	<!-- application styles -->
 	<link rel="stylesheet" href="dist/assets/css/app.css">
 </head>
 
 <body>
-	<div class="site-wrapper">
-		<div id="topic-selector">
-			<p>What do you want to talk about today?</p>
-			<a class="button outline" id="myDay">My Day</a>
-			<a class="button outline" id="myInterests">My Interests</a>
-			<a class="button outline" id="myInfo">My Life</a>
-			<a class="button outline" id="myFamily">My Family</a>
-		</div>
-		
-		<div id="question-wrapper">
-			<h1 id="question">Let's Talk!</h1>
-		</div>
+	<div class="container">
+		<div class="column">
+			
+			<div id="topic-selector">
+				<p>What do you want to talk about today?</p>
+				<a class="button outline" id="myDay">My Day</a>
+				<a class="button outline" id="myInterests">My Interests</a>
+				<a class="button outline" id="myInfo">My Life</a>
+				<a class="button outline" id="myFamily">My Family</a>
+			</div>
+			
+			<div id="question-wrapper">
+				<h1 id="question">Let's Talk!</h1>
+			</div>
 
-		<div id="question-button-wrapper">
-			<a class="button big" id="question-button">Get Question</a>
-		</div>
+			<div id="question-button-wrapper">
+				<a class="button big" id="question-button">Get Question</a>
+			</div>
 
+		</div>
 	</div>
+	<script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
 	<script src="dist/assets/js/app.js"></script>
 </body>
 </html>

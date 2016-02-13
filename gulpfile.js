@@ -1,9 +1,9 @@
 'use strict';
 
-var $	 	 		= require('gulp-load-plugins')();
-var gulp 		= require('gulp');
-var browser = require('browser-sync');
-var rimraf  = require('rimraf');
+var $	 	 		 = require('gulp-load-plugins')();
+var gulp 		 = require('gulp');
+var browser  = require('browser-sync');
+var rimraf   = require('rimraf');
 var sequence = require('run-sequence');
 
 var PORT = 3000;
@@ -14,9 +14,10 @@ gulp.task('clean', function(done) {
 
 gulp.task('javascript', function() {
 	gulp.src([
+			'bower_components/jquery/dist/jquery.js',
+			'bower_components/toastr/toastr.js',
 			'src/assets/js/studyBuddy.js',
-			'src/assets/js/user.js',
-			'bower_components/firebase/firebase.js'
+			'src/assets/js/user.js'
 		])
 	.pipe($.sourcemaps.init())
 	.pipe($.concat('app.js'))
@@ -29,13 +30,27 @@ gulp.task('sass', function() {
 	gulp.src('src/assets/scss/app.scss')
 	.pipe($.sourcemaps.init())
 	.pipe($.sass())
+	.pipe($.autoprefixer())
 	.pipe($.sourcemaps.write('./'))
 	.pipe(gulp.dest('dist/assets/css'))
 	.pipe(browser.reload({ stream: true }));
 });
 
+gulp.task('css', function() {
+	gulp.src([
+			'bower_components/normalize.css/normalize.css',
+			'bower_components/skeleton/css/skeleton.css',
+			'bower_components/toastr/toastr.css'
+		])
+	.pipe($.sourcemaps.init())
+	.pipe($.concat('public.css'))
+	.pipe($.sourcemaps.write('./'))
+	.pipe(gulp.dest('dist/assets/css'))
+	.on('finish', browser.reload);
+});
+
 gulp.task('build', function(done) {
-  sequence('clean', ['sass', 'javascript'], done);
+  sequence('clean', ['sass', 'css', 'javascript'], done);
 });
 
 gulp.task('server', function() {

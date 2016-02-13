@@ -16,7 +16,9 @@
   ],
   "dependencies": {
     "milligram": "^1.1.0",
-    "firebase": "^2.4.0"
+    "jquery": "^2.2.0",
+    "toastr": "^2.1.2",
+    "skeleton": "^2.0.4"
   },
   "private": true
 }
