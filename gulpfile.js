@@ -16,8 +16,10 @@ gulp.task('javascript', function() {
 	gulp.src([
 			'bower_components/jquery/dist/jquery.js',
 			'bower_components/toastr/toastr.js',
-			'src/assets/js/studyBuddy.js',
-			'src/assets/js/user.js'
+			'src/assets/js/app.js',
+			'src/assets/js/user.js',
+			'src/assets/js/questions.js',
+			'src/assets/js/common.js'
 		])
 	.pipe($.sourcemaps.init())
 	.pipe($.concat('app.js'))
@@ -62,4 +64,5 @@ gulp.task('server', function() {
 gulp.task('default', ['build', 'server'], function() {
 	gulp.watch(['src/assets/scss/**/{*.scss, *.sass}'], ['sass']);
   gulp.watch(['src/assets/js/**/*.js'], ['javascript']);
+  gulp.watch(['*.html'], browser.reload);
 });
