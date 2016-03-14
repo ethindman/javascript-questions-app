@@ -1,4 +1,6 @@
 .button {
+  @extend %no-select;
+
   &.success {
     background-color: $success;
     color: $white;
