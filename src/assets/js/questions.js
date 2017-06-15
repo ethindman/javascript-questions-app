@@ -1,6 +1,6 @@
 var myInfo = [
-  "What's your name?", 
-  "Where are you from?", 
+  "What's your name?",
+  "Where are you from?",
   "Where do you live?",
   "How old are you?",
   "What do you do?",
@@ -13,8 +13,9 @@ var myInfo = [
 ];
 
 var myInterests = [
-  "What is your hobby?", 
-  "Do you like to go to the movies?", 
+  "What are your hobbies?",
+  "What's your favorite food?",
+  "Do you like to go to the movies?",
   "What's your favorite movie?",
   "Do you play any sports?",
   "Do you play any instruments?",

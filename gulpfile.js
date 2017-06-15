@@ -3,10 +3,11 @@
 var $	 	 		 = require('gulp-load-plugins')();
 var gulp 		 = require('gulp');
 var browser  = require('browser-sync');
+var panini   = require('panini');
 var rimraf   = require('rimraf');
 var sequence = require('run-sequence');
 
-var PORT = 3000;
+var PORT = 5000;
 
 gulp.task('clean', function(done) {
   rimraf('dist', done);
@@ -51,13 +52,27 @@ gulp.task('css', function() {
 	.on('finish', browser.reload);
 });
 
+// Copy page templates into finished HTML files
+gulp.task('pages', function() {
+  gulp.src('src/pages/**/*.{html,hbs,handlebars}')
+    .pipe(panini({
+      root: 'src/pages/',
+      layouts: 'src/layouts/',
+      partials: 'src/partials/',
+      data: 'src/data/',
+      helpers: 'src/helpers/'
+    }))
+    .pipe(gulp.dest('dist'));
+});
+
 gulp.task('build', function(done) {
-  sequence('clean', ['sass', 'css', 'javascript'], done);
+  sequence('clean', ['sass', 'css', 'javascript', 'pages'], done);
 });
 
 gulp.task('server', function() {
 	browser.init({
-    server: '', port: PORT
+    server: 'dist',
+    port: PORT
   });
 });
 
